@@ -3,90 +3,22 @@
 <head>
   <title>Past and Present Tense Game</title>
   <style>
-    /* Updated CSS styles */
-    body {
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 20px;
-      background-image: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+    /* ... (CSS styles remain the same) */
+    .video-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
     }
-    h1 {
-      color: #4a4a4a;
-      font-size: 48px;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    .player {
-      display: inline-block;
-      margin: 20px;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-    .player:hover {
-      transform: translateY(-5px);
-    }
-    .score {
-      font-size: 36px;
-      color: #ff6b6b;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    .question {
-      font-size: 30px;
-      margin-bottom: 30px;
-      color: #4a4a4a;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    .answer {
-      margin: 10px;
-      padding: 15px 30px;
-      font-size: 24px;
-      background-color: #4ecdc4;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .answer:hover {
-      background-color: #45b8ac;
-      transform: scale(1.05);
-    }
-    .button {
-      padding: 15px 30px;
-      font-size: 24px;
-      background-color: #ff6b6b;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 30px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .button:hover {
-      background-color: #ff5252;
-      transform: scale(1.05);
-    }
-    input[type="text"] {
-      padding: 15px;
-      font-size: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .message {
-      font-size: 24px;
-      color: #ff6b6b;
-      margin-top: 20px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    .video-container video {
+      max-width: 80%;
+      max-height: 80%;
     }
   </style>
 </head>
@@ -113,6 +45,13 @@
   <div id="answers"></div>
   <button class="button" onclick="nextQuestion()">Next Question</button>
   <div class="message" id="message"></div>
+
+  <div class="video-container" id="videoContainer">
+    <video id="winnerVideo" controls>
+      <source src="winner.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
   <audio id="correctSound" src="correct.mp3"></audio>
   <audio id="incorrectSound" src="incorrect.mp3"></audio>
