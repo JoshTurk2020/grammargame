@@ -374,44 +374,25 @@
       document.getElementById("player2Name").textContent = player2Name;
       nextQuestion();
     }
-
-    function nextQuestion() {
-      if (currentQuestion < sentences.length) {
-        const question = sentences[currentQuestion];
-        document.getElementById("question").textContent = question.sentence;
-
-        const answerButtons = question.options.map(option => `
-          <button class="answer" onclick="checkAnswer('${option}')">
-            ${option}
-          </button>
-        `).join("");
-
-        document.getElementById("answers").innerHTML = answerButtons;
+    function checkAnswer(answer) {
+      const question = sentences[currentQuestion];
+      const correctAnswer = question.correctAnswer;
+    
+      if (answer === correctAnswer) {
+        if (currentPlayer === 1) {
+          score1++;
+          document.getElementById("score1").textContent = score1;
+        } else {
+          score2++;
+          document.getElementById("score2").textContent = score2;
+        }
       } else {
-        document.getElementById("question").textContent = "Game Over!";
-        document.getElementById("answers").innerHTML = "";
+        const currentPlayerName = currentPlayer === 1 ? document.getElementById("player1Name").textContent : document.getElementById("player2Name").textContent;
+        const nextPlayerName = currentPlayer === 1 ? document.getElementById("player2Name").textContent : document.getElementById("player1Name").textContent;
+        alert(`Nice try, ${currentPlayerName}! ${nextPlayerName}'s turn.`);
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
       }
+    
+      currentQuestion++;
+      nextQuestion();
     }
-
-      function checkAnswer(answer) {
-  const question = sentences[currentQuestion];
-  const correctAnswer = question.correctAnswer;
-
-  if (answer === correctAnswer) {
-    if (currentPlayer === 1) {
-      score1++;
-      document.getElementById("score1").textContent = score1;
-    } else {
-      score2++;
-      document.getElementById("score2").textContent = score2;
-    }
-  } else {
-    const currentPlayerName = currentPlayer === 1 ? document.getElementById("player1Name").textContent : document.getElementById("player2Name").textContent;
-    const nextPlayerName = currentPlayer === 1 ? document.getElementById("player2Name").textContent : document.getElementById("player1Name").textContent;
-    alert(`Nice try, ${currentPlayerName}! ${nextPlayerName}'s turn.`);
-    currentPlayer = currentPlayer === 1 ? 2 : 1;
-  }
-
-  currentQuestion++;
-  nextQuestion();
-}
