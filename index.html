@@ -393,6 +393,7 @@
       }
     }
 
+    
     function checkAnswer(answer) {
       const question = sentences[currentQuestion];
       const correctAnswer = question.correctAnswer;
@@ -406,10 +407,12 @@
           document.getElementById("score2").textContent = score2;
         }
       } else {
-        alert(`Incorrect! It's ${currentPlayer === 1 ? "Player 2" : "Player 1"}'s turn.`);
+        const currentPlayerName = document.getElementById(`player${currentPlayer}Name`).textContent;
+        const nextPlayerName = document.getElementById(`player${currentPlayer === 1 ? 2 : 1}Name`).textContent;
+        alert(`Nice try, ${currentPlayerName}! ${nextPlayerName}'s turn.`);
         currentPlayer = currentPlayer === 1 ? 2 : 1;
       }
-
+      
       currentQuestion++;
       nextQuestion();
     }
