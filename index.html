@@ -4,7 +4,84 @@
   <title>Past and Present Tense Game</title>
   <style>
     /* CSS styles for the game */
-    /* ... (CSS styles remain the same) ... */
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      background-image: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+    }
+    h1 {
+      color: #4a4a4a;
+      font-size: 48px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .player {
+      display: inline-block;
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .player:hover {
+      transform: translateY(-5px);
+    }
+    .score {
+      font-size: 36px;
+      color: #ff6b6b;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .question {
+      font-size: 30px;
+      margin-bottom: 30px;
+      color: #4a4a4a;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .answer {
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 24px;
+      background-color: #4ecdc4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .answer:hover {
+      background-color: #45b8ac;
+      transform: scale(1.05);
+    }
+    .button {
+      padding: 15px 30px;
+      font-size: 24px;
+      background-color: #ff6b6b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .button:hover {
+      background-color: #ff5252;
+      transform: scale(1.05);
+    }
+    input[type="text"] {
+      padding: 15px;
+      font-size: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -32,255 +109,255 @@
 
   <script>
     // JavaScript code for the game logic
-    let sentences = [   
+    let sentences = [
       {
         sentence: "I (go) to the park yesterday.",
-        options: ["went", "goes", "go", "is going", "had gone"],
+        options: ["went", "go", "have gone", "will go", "goes"],
         correctAnswer: "went"
       },
       {
         sentence: "She (watch) a movie right now.",
-        options: ["watched", "watches", "is watching", "has watched", "had watched"],
+        options: ["watches", "watched", "is watching", "has watched", "will watch"],
         correctAnswer: "is watching"
       },
       {
         sentence: "They (play) video games every day.",
-        options: ["played", "plays", "play", "are playing", "have played"],
+        options: ["play", "played", "are playing", "have played", "will play"],
         correctAnswer: "play"
       },
       {
         sentence: "He (eat) a sandwich for lunch.",
-        options: ["ate", "eats", "is eating", "has eaten", "had eaten"],
+        options: ["ate", "eats", "is eating", "has eaten", "will eat"],
         correctAnswer: "ate"
       },
       {
         sentence: "We (visit) our grandparents last weekend.",
-        options: ["visited", "visits", "visit", "were visiting", "had visited"],
+        options: ["visited", "visit", "are visiting", "have visited", "will visit"],
         correctAnswer: "visited"
       },
       {
         sentence: "The dog (bark) loudly at the mailman.",
-        options: ["barked", "barks", "is barking", "has barked", "had barked"],
+        options: ["barked", "barks", "is barking", "has barked", "will bark"],
         correctAnswer: "barked"
       },
       {
         sentence: "The cat (sleep) on the couch all day.",
-        options: ["slept", "sleeps", "is sleeping", "has slept", "had slept"],
+        options: ["slept", "sleeps", "is sleeping", "has slept", "will sleep"],
         correctAnswer: "slept"
       },
       {
         sentence: "The children (study) for their exam tomorrow.",
-        options: ["studied", "studies", "are studying", "have studied", "had studied"],
+        options: ["study", "studied", "are studying", "have studied", "will study"],
         correctAnswer: "are studying"
       },
       {
         sentence: "The teacher (explain) the lesson to the class.",
-        options: ["explained", "explains", "is explaining", "has explained", "had explained"],
+        options: ["explained", "explains", "is explaining", "has explained", "will explain"],
         correctAnswer: "explained"
       },
       {
         sentence: "The sun (shine) brightly in the sky.",
-        options: ["shone", "shines", "is shining", "has shone", "had shone"],
+        options: ["shines", "shone", "is shining", "has shone", "will shine"],
         correctAnswer: "is shining"
       },
       {
         sentence: "The flowers (bloom) in the spring.",
-        options: ["bloomed", "blooms", "are blooming", "have bloomed", "had bloomed"],
+        options: ["bloom", "bloomed", "are blooming", "have bloomed", "will bloom"],
         correctAnswer: "bloom"
       },
       {
         sentence: "The leaves (fall) from the trees in autumn.",
-        options: ["fell", "falls", "fall", "are falling", "have fallen"],
+        options: ["fall", "fell", "are falling", "have fallen", "will fall"],
         correctAnswer: "fall"
       },
       {
         sentence: "The snow (cover) the ground in winter.",
-        options: ["covered", "covers", "is covering", "has covered", "had covered"],
+        options: ["covers", "covered", "is covering", "has covered", "will cover"],
         correctAnswer: "covers"
       },
       {
         sentence: "The birds (sing) in the morning.",
-        options: ["sang", "sings", "sing", "are singing", "have sung"],
+        options: ["sing", "sang", "are singing", "have sung", "will sing"],
         correctAnswer: "sing"
       },
       {
         sentence: "The athletes (train) hard for the competition.",
-        options: ["trained", "trains", "train", "are training", "have trained"],
+        options: ["train", "trained", "are training", "have trained", "will train"],
         correctAnswer: "train"
       },
       {
         sentence: "The musicians (perform) on stage tonight.",
-        options: ["performed", "performs", "perform", "are performing", "have performed"],
+        options: ["perform", "performed", "are performing", "have performed", "will perform"],
         correctAnswer: "are performing"
       },
       {
         sentence: "The artists (paint) beautiful landscapes.",
-        options: ["painted", "paints", "paint", "are painting", "have painted"],
+        options: ["paint", "painted", "are painting", "have painted", "will paint"],
         correctAnswer: "paint"
       },
       {
         sentence: "The chefs (cook) delicious meals in the restaurant.",
-        options: ["cooked", "cooks", "cook", "are cooking", "have cooked"],
+        options: ["cook", "cooked", "are cooking", "have cooked", "will cook"],
         correctAnswer: "cook"
       },
       {
         sentence: "The scientists (conduct) experiments in the lab.",
-        options: ["conducted", "conducts", "conduct", "are conducting", "have conducted"],
+        options: ["conduct", "conducted", "are conducting", "have conducted", "will conduct"],
         correctAnswer: "conduct"
       },
       {
         sentence: "The engineers (design) new technologies.",
-        options: ["designed", "designs", "design", "are designing", "have designed"],
+        options: ["design", "designed", "are designing", "have designed", "will design"],
         correctAnswer: "design"
       },
       {
         sentence: "The actors (rehearse) for the play.",
-        options: ["rehearsed", "rehearses", "rehearse", "are rehearsing", "have rehearsed"],
+        options: ["rehearse", "rehearsed", "are rehearsing", "have rehearsed", "will rehearse"],
         correctAnswer: "rehearse"
       },
       {
         sentence: "The dancers (practice) their routines.",
-        options: ["practiced", "practices", "practice", "are practicing", "have practiced"],
+        options: ["practice", "practiced", "are practicing", "have practiced", "will practice"],
         correctAnswer: "practice"
       },
       {
         sentence: "The photographers (capture) stunning images.",
-        options: ["captured", "captures", "capture", "are capturing", "have captured"],
+        options: ["capture", "captured", "are capturing", "have captured", "will capture"],
         correctAnswer: "capture"
       },
       {
         sentence: "The writers (create) engaging stories.",
-        options: ["created", "creates", "create", "are creating", "have created"],
+        options: ["create", "created", "are creating", "have created", "will create"],
         correctAnswer: "create"
       },
       {
         sentence: "The parents (take care) of their children.",
-        options: ["took care", "takes care", "take care", "are taking care", "have taken care"],
+        options: ["take care", "took care", "are taking care", "have taken care", "will take care"],
         correctAnswer: "take care"
       },
       {
         sentence: "The students (learn) new things every day.",
-        options: ["learned", "learns", "learn", "are learning", "have learned"],
+        options: ["learn", "learned", "are learning", "have learned", "will learn"],
         correctAnswer: "learn"
       },
       {
         sentence: "The doctors (treat) patients at the hospital.",
-        options: ["treated", "treats", "treat", "are treating", "have treated"],
+        options: ["treat", "treated", "are treating", "have treated", "will treat"],
         correctAnswer: "treat"
       },
       {
         sentence: "The nurses (assist) the doctors and patients.",
-        options: ["assisted", "assists", "assist", "are assisting", "have assisted"],
+        options: ["assist", "assisted", "are assisting", "have assisted", "will assist"],
         correctAnswer: "assist"
       },
       {
         sentence: "The firefighters (rescue) people from burning buildings.",
-        options: ["rescued", "rescues", "rescue", "are rescuing", "have rescued"],
+        options: ["rescue", "rescued", "are rescuing", "have rescued", "will rescue"],
         correctAnswer: "rescue"
       },
       {
         sentence: "The police officers (protect) the community.",
-        options: ["protected", "protects", "protect", "are protecting", "have protected"],
+        options: ["protect", "protected", "are protecting", "have protected", "will protect"],
         correctAnswer: "protect"
       },
       {
         sentence: "I (have) never been to Europe before.",
-        options: ["had", "has", "have", "am having", "had had"],
+        options: ["have", "has", "had", "am having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "She (have) already finished her homework.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "They (have) been waiting for an hour.",
-        options: ["had", "has", "have", "are having", "had had"],
+        options: ["have", "has", "had", "are having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "He (have) just arrived at the office.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "We (have) been planning this trip for months.",
-        options: ["had", "has", "have", "are having", "had had"],
+        options: ["have", "has", "had", "are having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "The team (have) won the championship last year.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["had", "has", "have", "was having", "will have"],
         correctAnswer: "had"
       },
       {
         sentence: "The company (have) expanded its business recently.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "The artist (have) created a masterpiece.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "The book (have) become a bestseller.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "The city (have) undergone major changes.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "I (have) never seen such a beautiful sunset before.",
-        options: ["had", "has", "have", "am having", "had had"],
+        options: ["have", "has", "had", "am having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "She (have) always wanted to learn a new language.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "They (have) been friends since childhood.",
-        options: ["had", "has", "have", "are having", "had had"],
+        options: ["have", "has", "had", "are having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "He (have) never tried skydiving.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "We (have) been saving money for a new car.",
-        options: ["had", "has", "have", "are having", "had had"],
+        options: ["have", "has", "had", "are having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "The restaurant (have) received excellent reviews.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "The movie (have) won several awards.",
-        options: ["had", "has", "have", "is having", "had had"],
+        options: ["has", "have", "had", "is having", "will have"],
         correctAnswer: "has"
       },
       {
         sentence: "The scientists (have) made a groundbreaking discovery.",
-        options: ["had", "has", "have", "are having", "had had"],
+        options: ["have", "has", "had", "are having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "The athletes (have) trained hard for the Olympics.",
-        options: ["had", "has", "have", "are having", "had had"],
+        options: ["have", "has", "had", "are having", "will have"],
         correctAnswer: "have"
       },
       {
         sentence: "The volunteers (have) helped many people in need.",
-        options: ["had", "has", "have", "are having", "had had"],
+        options: ["have", "has", "had", "are having", "will have"],
         correctAnswer: "have"
       }
     ];
