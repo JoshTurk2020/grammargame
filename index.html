@@ -406,8 +406,8 @@
           document.getElementById("score2").textContent = score2;
         }
       } else {
-        alert(`Incorrect! It's ${currentPlayer === 1 ? "Player 2" : "Player 1"}'s turn.`);
-        currentPlayer = currentPlayer === 1 ? 2 : 1;
+          alert(`Nice try, ${currentPlayer === 1 ? "Player 1" : "Player 2"}! It's ${currentPlayer === 1 ? "Player 2" : "Player 1"}'s turn.`);
+          currentPlayer = currentPlayer === 1 ? 2 : 1;
       }
 
       currentQuestion++;
