@@ -14,12 +14,21 @@
 </head>
 <body>
   <h1>Past and Present Tense Game</h1>
+  <div>
+    <label for="player1">Player 1:</label>
+    <input type="text" id="player1" placeholder="Enter name">
+  </div>
+  <div>
+    <label for="player2">Player 2:</label>
+    <input type="text" id="player2" placeholder="Enter name">
+  </div>
+  <button class="button" onclick="startGame()">Start Game</button>
   <div class="player">
-    <h2>Player 1</h2>
+    <h2 id="player1Name">Player 1</h2>
     <div class="score" id="score1">0</div>
   </div>
   <div class="player">
-    <h2>Player 2</h2>
+    <h2 id="player2Name">Player 2</h2>
     <div class="score" id="score2">0</div>
   </div>
   <div class="question" id="question"></div>
@@ -28,11 +37,57 @@
 
   <script>
     // JavaScript code for the game logic
-    const sentences = [
-      // Add your 50 random sentences here
+    let sentences = [
       "I (go) to the park yesterday.",
       "She (watch) a movie right now.",
-      // ...
+      "They (play) video games every day.",
+      "He (eat) a sandwich for lunch.",
+      "We (visit) our grandparents last weekend.",
+      "The dog (bark) loudly at the mailman.",
+      "The cat (sleep) on the couch all day.",
+      "The children (study) for their exam tomorrow.",
+      "The teacher (explain) the lesson to the class.",
+      "The sun (shine) brightly in the sky.",
+      "The flowers (bloom) in the spring.",
+      "The leaves (fall) from the trees in autumn.",
+      "The snow (cover) the ground in winter.",
+      "The birds (sing) in the morning.",
+      "The athletes (train) hard for the competition.",
+      "The musicians (perform) on stage tonight.",
+      "The artists (paint) beautiful landscapes.",
+      "The chefs (cook) delicious meals in the restaurant.",
+      "The scientists (conduct) experiments in the lab.",
+      "The engineers (design) new technologies.",
+      "The actors (rehearse) for the play.",
+      "The dancers (practice) their routines.",
+      "The photographers (capture) stunning images.",
+      "The writers (create) engaging stories.",
+      "The parents (take care) of their children.",
+      "The students (learn) new things every day.",
+      "The doctors (treat) patients at the hospital.",
+      "The nurses (assist) the doctors and patients.",
+      "The firefighters (rescue) people from burning buildings.",
+      "The police officers (protect) the community.",
+      "I (have) never been to Europe before.",
+      "She (have) already finished her homework.",
+      "They (have) been waiting for an hour.",
+      "He (have) just arrived at the office.",
+      "We (have) been planning this trip for months.",
+      "The team (have) won the championship last year.",
+      "The company (have) expanded its business recently.",
+      "The artist (have) created a masterpiece.",
+      "The book (have) become a bestseller.",
+      "The city (have) undergone major changes.",
+      "I (have) never seen such a beautiful sunset before.",
+      "She (have) always wanted to learn a new language.",
+      "They (have) been friends since childhood.",
+      "He (have) never tried skydiving.",
+      "We (have) been saving money for a new car.",
+      "The restaurant (have) received excellent reviews.",
+      "The movie (have) won several awards.",
+      "The scientists (have) made a groundbreaking discovery.",
+      "The athletes (have) trained hard for the Olympics.",
+      "The volunteers (have) helped many people in need."
     ];
 
     let currentPlayer = 1;
@@ -40,13 +95,43 @@
     let score1 = 0;
     let score2 = 0;
 
+    function startGame() {
+      const player1Name = document.getElementById("player1").value || "Player 1";
+      const player2Name = document.getElementById("player2").value || "Player 2";
+      document.getElementById("player1Name").textContent = player1Name;
+      document.getElementById("player2Name").textContent = player2Name;
+      nextQuestion();
+    }
+
     function nextQuestion() {
-      if (currentQuestion < sentences.length) {
-        document.getElementById("question").textContent = sentences[currentQuestion];
+      if (sentences.length > 0) {
+        const randomIndex = Math.floor(Math.random() * sentences.length);
+        const sentence = sentences[randomIndex];
+        document.getElementById("question").textContent = sentence;
+
+        const verb = sentence.match(/\((\w+)\)/)[1];
+        const pastTense = getPastTense(verb);
+        const presentTense = getPresentTense(verb);
+        const presentContinuousTense = getPresentContinuousTense(verb);
+        const pastPerfectTense = getPastPerfectTense(verb);
+        const presentPerfectTense = getPresentPerfectTense(verb);
+
         document.getElementById("answers").innerHTML = `
-          <button class="answer" onclick="checkAnswer('went')">went</button>
-          <button class="answer" onclick="checkAnswer('goes')">goes</button>
-          <button class="answer" onclick="checkAnswer('is going')">is going</button>
+          <button class="answer" onclick="checkAnswer('${pastTense}', ${randomIndex})">
+            ${pastTense}
+          </button>
+          <button class="answer" onclick="checkAnswer('${presentTense}', ${randomIndex})">
+            ${presentTense}
+          </button>
+          <button class="answer" onclick="checkAnswer('${presentContinuousTense}', ${randomIndex})">
+            ${presentContinuousTense}
+          </button>
+          <button class="answer" onclick="checkAnswer('${pastPerfectTense}', ${randomIndex})">
+            ${pastPerfectTense}
+          </button>
+          <button class="answer" onclick="checkAnswer('${presentPerfectTense}', ${randomIndex})">
+            ${presentPerfectTense}
+          </button>
         `;
       } else {
         document.getElementById("question").textContent = "Game Over!";
@@ -54,10 +139,43 @@
       }
     }
 
-    function checkAnswer(answer) {
-      const correctAnswer = sentences[currentQuestion].includes("go") ? "went" : 
-                            sentences[currentQuestion].includes("watch") ? "is watching" : "";
-      
+    function getPastTense(verb) {
+      if (verb.endsWith("e")) {
+        return verb + "d";
+      } else if (verb.endsWith("y")) {
+        return verb.slice(0, -1) + "ied";
+      } else {
+        return verb + "ed";
+      }
+    }
+
+    function getPresentTense(verb) {
+      return verb + "s";
+    }
+
+    function getPresentContinuousTense(verb) {
+      return "is " + verb + "ing";
+    }
+
+    function getPastPerfectTense(verb) {
+      return "had " + getPastTense(verb);
+    }
+
+    function getPresentPerfectTense(verb) {
+      return "has " + getPastTense(verb);
+    }
+
+    function checkAnswer(answer, index) {
+      const sentence = sentences[index];
+      const correctAnswer = sentence.includes("yesterday") ? getPastTense(sentence.match(/\((\w+)\)/)[1]) :
+                            sentence.includes("now") ? getPresentContinuousTense(sentence.match(/\((\w+)\)/)[1]) :
+                            sentence.includes("every day") ? getPresentTense(sentence.match(/\((\w+)\)/)[1]) :
+                            sentence.includes("never") || sentence.includes("already") || sentence.includes("just") ?
+                            getPresentPerfectTense(sentence.match(/\((\w+)\)/)[1]) :
+                            sentence.includes("had") || sentence.includes("last") ?
+                            getPastPerfectTense(sentence.match(/\((\w+)\)/)[1]) :
+                            getPresentTense(sentence.match(/\((\w+)\)/)[1]);
+
       if (answer === correctAnswer) {
         if (currentPlayer === 1) {
           score1++;
@@ -66,15 +184,13 @@
           score2++;
           document.getElementById("score2").textContent = score2;
         }
-        currentQuestion++;
       } else {
         currentPlayer = currentPlayer === 1 ? 2 : 1;
       }
-      
+
+      sentences.splice(index, 1);
       nextQuestion();
     }
-
-    nextQuestion();
   </script>
 </body>
 </html>
