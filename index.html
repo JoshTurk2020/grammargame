@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Past and Present Tense Game</title>
+  <style>
+    /* CSS styles for the game */
+    body { font-family: Arial, sans-serif; text-align: center; }
+    .player { display: inline-block; margin: 20px; }
+    .score { font-size: 24px; }
+    .question { font-size: 20px; margin-bottom: 10px; }
+    .answer { margin: 5px; }
+    .button { padding: 10px 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h1>Past and Present Tense Game</h1>
+  <div class="player">
+    <h2>Player 1</h2>
+    <div class="score" id="score1">0</div>
+  </div>
+  <div class="player">
+    <h2>Player 2</h2>
+    <div class="score" id="score2">0</div>
+  </div>
+  <div class="question" id="question"></div>
+  <div id="answers"></div>
+  <button class="button" onclick="nextQuestion()">Next Question</button>
+
+  <script>
+    // JavaScript code for the game logic
+    const sentences = [
+      // Add your 50 random sentences here
+      "I (go) to the park yesterday.",
+      "She (watch) a movie right now.",
+      // ...
+    ];
+
+    let currentPlayer = 1;
+    let currentQuestion = 0;
+    let score1 = 0;
+    let score2 = 0;
+
+    function nextQuestion() {
+      if (currentQuestion < sentences.length) {
+        document.getElementById("question").textContent = sentences[currentQuestion];
+        document.getElementById("answers").innerHTML = `
+          <button class="answer" onclick="checkAnswer('went')">went</button>
+          <button class="answer" onclick="checkAnswer('goes')">goes</button>
+          <button class="answer" onclick="checkAnswer('is going')">is going</button>
+        `;
+      } else {
+        document.getElementById("question").textContent = "Game Over!";
+        document.getElementById("answers").innerHTML = "";
+      }
+    }
+
+    function checkAnswer(answer) {
+      const correctAnswer = sentences[currentQuestion].includes("go") ? "went" : 
+                            sentences[currentQuestion].includes("watch") ? "is watching" : "";
+      
+      if (answer === correctAnswer) {
+        if (currentPlayer === 1) {
+          score1++;
+          document.getElementById("score1").textContent = score1;
+        } else {
+          score2++;
+          document.getElementById("score2").textContent = score2;
+        }
+        currentQuestion++;
+      } else {
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+      }
+      
+      nextQuestion();
+    }
+
+    nextQuestion();
+  </script>
+</body>
+</html>
