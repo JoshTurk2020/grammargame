@@ -406,6 +406,7 @@
           document.getElementById("score2").textContent = score2;
         }
       } else {
+        alert(`Incorrect! It's ${currentPlayer === 1 ? "Player 2" : "Player 1"}'s turn.`);
         currentPlayer = currentPlayer === 1 ? 2 : 1;
       }
 
@@ -414,4 +415,4 @@
     }
   </script>
 </body>
-</html> 
+</html>
