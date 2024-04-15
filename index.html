@@ -394,25 +394,24 @@
     }
 
       function checkAnswer(answer) {
-      const question = sentences[currentQuestion];
-      const correctAnswer = question.correctAnswer;
+  const question = sentences[currentQuestion];
+  const correctAnswer = question.correctAnswer;
 
-      if (answer === correctAnswer) {
-        if (currentPlayer === 1) {
-          score1++;
-          document.getElementById("score1").textContent = score1;
-        } else {
-          score2++;
-          document.getElementById("score2").textContent = score2;
-        }
-      } else {
-        alert(`Nice try! ${currentPlayer === 1 ? "Player 2" : "Player 1"}'s turn.`);
-        currentPlayer = currentPlayer === 1 ? 2 : 1;
-      }
-
-      currentQuestion++;
-      nextQuestion();
+  if (answer === correctAnswer) {
+    if (currentPlayer === 1) {
+      score1++;
+      document.getElementById("score1").textContent = score1;
+    } else {
+      score2++;
+      document.getElementById("score2").textContent = score2;
     }
-  </script>
-</body>
-</html>
+  } else {
+    const currentPlayerName = currentPlayer === 1 ? document.getElementById("player1Name").textContent : document.getElementById("player2Name").textContent;
+    const nextPlayerName = currentPlayer === 1 ? document.getElementById("player2Name").textContent : document.getElementById("player1Name").textContent;
+    alert(`Nice try, ${currentPlayerName}! ${nextPlayerName}'s turn.`);
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+  }
+
+  currentQuestion++;
+  nextQuestion();
+}
