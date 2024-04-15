@@ -3,7 +3,7 @@
 <head>
   <title>Past and Present Tense Game</title>
   <style>
-    /* Updated CSS styles */
+    /* CSS styles for the game */
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
@@ -82,12 +82,6 @@
       margin-bottom: 20px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .message {
-      font-size: 24px;
-      color: #ff6b6b;
-      margin-top: 20px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
   </style>
 </head>
 <body>
@@ -112,10 +106,6 @@
   <div class="question" id="question"></div>
   <div id="answers"></div>
   <button class="button" onclick="nextQuestion()">Next Question</button>
-  <div class="message" id="message"></div>
-
-  <audio id="correctSound" src="sound.mp3"></audio>
-  <audio id="incorrectSound" src="sound.mp3"></audio>
 
   <script>
     // JavaScript code for the game logic
@@ -386,7 +376,6 @@
     }
 
     function nextQuestion() {
-      document.getElementById("message").textContent = "";
       if (currentQuestion < sentences.length) {
         const question = sentences[currentQuestion];
         document.getElementById("question").textContent = question.sentence;
@@ -416,11 +405,8 @@
           score2++;
           document.getElementById("score2").textContent = score2;
         }
-        document.getElementById("correctSound").play();
       } else {
         currentPlayer = currentPlayer === 1 ? 2 : 1;
-        document.getElementById("message").textContent = `Incorrect! It's now Player ${currentPlayer}'s turn.`;
-        document.getElementById("incorrectSound").play();
       }
 
       currentQuestion++;
@@ -428,4 +414,4 @@
     }
   </script>
 </body>
-</html>
+</html> 
