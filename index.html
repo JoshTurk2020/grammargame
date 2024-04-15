@@ -4,12 +4,69 @@
   <title>Past and Present Tense Game</title>
   <style>
     /* CSS styles for the game */
-    body { font-family: Arial, sans-serif; text-align: center; }
-    .player { display: inline-block; margin: 20px; }
-    .score { font-size: 24px; }
-    .question { font-size: 20px; margin-bottom: 10px; }
-    .answer { margin: 5px; }
-    .button { padding: 10px 20px; font-size: 18px; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #4CAF50;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .player {
+      display: inline-block;
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .score {
+      font-size: 24px;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    .question {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .answer {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .answer:hover {
+      background-color: #45a049;
+    }
+    .button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .button:hover {
+      background-color: #45a049;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
