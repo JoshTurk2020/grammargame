@@ -374,7 +374,23 @@
       document.getElementById("player2Name").textContent = player2Name;
       nextQuestion();
     }
-
+    function nextQuestion() {
+      if (currentQuestion < sentences.length) {
+        const question = sentences[currentQuestion];
+        document.getElementById("question").textContent = question.sentence;
+    
+        const answerButtons = question.options.map(option => `
+          <button class="answer" onclick="checkAnswer('${option}')">
+            ${option}
+          </button>
+        `).join("");
+    
+        document.getElementById("answers").innerHTML = answerButtons;
+      } else {
+        document.getElementById("question").textContent = "Game Over!";
+        document.getElementById("answers").innerHTML = "";
+      }
+    }
     function checkAnswer(answer) {
       const question = sentences[currentQuestion];
       const correctAnswer = question.correctAnswer;
