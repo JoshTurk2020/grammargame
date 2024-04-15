@@ -372,7 +372,7 @@
       }
     ];
 
-    let currentPlayer = 1;
+      let currentPlayer = 1;
     let currentQuestion = 0;
     let score1 = 0;
     let score2 = 0;
@@ -419,15 +419,20 @@
           document.getElementById("score2").textContent = score2;
         }
         document.getElementById("correctSound").play();
+        document.getElementById("message").textContent = "Correct!";
+        currentQuestion++;
+        setTimeout(nextQuestion, 2000); // Delay next question by 2 seconds
       } else {
+        const currentPlayerName = currentPlayer === 1 ? player1Name : player2Name;
         const nextPlayerName = currentPlayer === 1 ? player2Name : player1Name;
-        document.getElementById("message").textContent = `Incorrect! It's ${nextPlayerName}'s turn.`;
+        document.getElementById("message").innerHTML = `
+          <p>Nice try, ${currentPlayerName}!</p>
+          <p>It's ${nextPlayerName}'s turn now.</p>
+        `;
         document.getElementById("incorrectSound").play();
         currentPlayer = currentPlayer === 1 ? 2 : 1;
+        setTimeout(nextQuestion, 2000); // Delay next question by 2 seconds
       }
-
-      currentQuestion++;
-      nextQuestion();
     }
   </script>
 </body>
